@@ -1,0 +1,113 @@
+<section class="w-[1200px] flex justify-center  items-center mx-auto">
+        
+        <form class="w-96 relative rounded-md  flex items-center h-[50%] bg-white shadow-2xl px-5 py-4 flex-col" action="" (submit)="submitForm()">
+            <h1 class="text-center mb-4 font-semibold">Add Patient Here</h1>
+            <span class="absolute right-0 top-0 mr-2 px-2 py-1 rounded-sm bg-amber-300 cursor-pointer " (click)="clearForm()">Clear Form</span>
+            <!-- patient name -->
+          <div class=" w-full flex flex-col gap-2 mb-1 px-2 py-1">
+             <label for="pname">Name</label>
+             <input type="text" id="pname" placeholder="patientName" name="Name" [(ngModel)]="patient.Name" class="bg-green-200 border-none rounded-sm px-3 py-1">
+          </div>   
+          <!-- Disease -->
+              <div class=" w-full flex flex-col gap-2 mb-1 px-2 py-1">
+             <label for="pdis">Disease</label>
+             <input type="text" id="pdis" placeholder="Patient Disease" name="Disease"  [(ngModel)]="patient.Disease" class="bg-green-200 border-none rounded-sm px-3 py-1">
+          </div>  
+
+          <!-- ageField -->
+              <div class=" w-full flex flex-col gap-2 mb-4 px-2 py-1">
+             <label for="page">Age</label>
+             <input type="text" id="page" placeholder="Patient Age" name="Age"  [(ngModel)]="patient.age" class="bg-green-200 border-none rounded-sm px-3 py-1">
+          </div>  
+         <button type="button" (click)="toggleAddress()" class="w-[50%] px-1 py-1 rounded-sm bg-blue-300">
+            {{addressEnable ? 'Hide' : 'Add'}} Address Field
+         </button>
+         @if (addressEnable) {
+            <h1 class="text-center mb-1 font-semibold mt-1">patientAddress</h1>
+
+            <!-- addressField -->
+                <div class=" w-full flex flex-col gap-2 mb-1 px-2 py-1">
+                 <label for="pDist">District</label>
+                 <input type="text" id="pDist" placeholder="Patient District" name="District" [(ngModel)]="AllAddress.District" class="bg-green-200 border-none rounded-sm px-3 py-1">
+            </div>
+            <!-- state -->
+                  <div class=" w-full flex flex-col gap-2 mb-1 px-2 py-1">
+                 <label for="pState">State</label>
+                 <input type="text" id="pState" placeholder="Patient State" name="State" [(ngModel)]="AllAddress.Street" class="bg-green-200 border-none rounded-sm px-3 py-1">
+            </div>
+            <!-- Tole -->
+                  <div class=" w-full flex flex-col gap-2 mb-1 px-2 py-1">
+                 <label for="pTole">Tole</label>
+                 <input type="text" id="pTole" placeholder="Patient Tole" name="Tole" [(ngModel)]="AllAddress.Tole" class="bg-green-200 border-none rounded-sm px-3 py-1">
+            </div>
+            <button type="button" (click)="addressAdder()"  [ngClass]="IsEditButton ? 'px-2 py-1 hidden bg-slate-300':'px-2 py-1 block bg-slate-300'"> Add Address </button>
+         }
+
+            <button *ngIf="!IsEditButton" type="submit" class="px-2 py-1 rounded-md bg-blue-200 mt-1 ">Add Patient</button>
+            <button *ngIf="IsEditButton" type="button" (click)="update()" class="px-2 mt-1 py-1 rounded-md bg-blue-300">Update Patient</button>
+            <button *ngIf="IsEditButton" type="button" (click)="cancel()" class="px-2 py-1 mt-1 rounded-md bg-blue-200">Cancel</button>
+
+
+        </form>
+</section>
+
+ 
+<section class="mb-12 pb-5">
+       <div *ngIf="Allpatients.length == 0">
+          <h1 class="text-center font-semibold mt-3 ">Cannot Find Any Patients List</h1>
+       </div>
+      <div *ngIf="Allpatients.length > 0" class="w-[90%] mx-auto mt-8">
+  <h1 class="text-center font-semibold mb-4 text-2xl">All Patients</h1>
+
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-200">
+      <tr>
+          <th class="border px-4 py-2">Id</th>
+        <th class="border px-4 py-2">Name</th>
+        <th class="border px-4 py-2">Disease</th>
+        <th class="border px-4 py-2">Age</th>
+        <th class="border px-4 py-2">Cruds</th>
+        <th class="border px-4 py-2">Addresses</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let patient of Allpatients">
+         <td class="border px-4 py-2">{{ patient.id }}</td>
+        <td class="border px-4 py-2">{{ patient.patietName }}</td>
+        <td class="border px-4 py-2">{{ patient.patientDisease}}</td>
+        <td class="border px-4 py-2">{{ patient.age }}</td>
+        <td class="border px-4 py-2">
+          <button type="button" (click)="delete(patient.id)" class="px-2 py-1 rounded-sm bg-amber-400">Delete</button>
+        </td>
+        <td class="border px-4 py-2">
+          <table class="w-full border border-gray-200">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="border px-2 py-1"> Id</th>
+                <th class="border px-2 py-1">District</th>
+                <th class="border px-2 py-1">Street</th>
+                <th class="border px-2 py-1">Tole</th>
+                <th class="border px-2 py-1">Cruds</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let addr of patient.addressField">
+                <td class="border px-2 py-1">{{ addr.id }}</td>
+                <td class="border px-2 py-1">{{ addr.district }}</td>
+                <td class="border px-2 py-1">{{ addr.street }}</td>
+                <td class="border px-2 py-1">{{ addr.tole }}</td>
+                <td class="border px-2 py-1">
+                  <button (click)="editAddress(patient.id,addr.id)" class="bg-yellow-300 px-2 py-1 rounded-sm mr-2">Edit</button>
+                  <button (click)="deleteAddress(addr.id)" class="bg-red-400 px-2 py-1 rounded-sm">Delete</button>
+              </tr>
+            </tbody>
+            
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</section>
