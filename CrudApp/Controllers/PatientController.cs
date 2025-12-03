@@ -90,6 +90,7 @@ public class PatientController : ControllerBase
     [HttpPut("update/{id}/{id2}")]
     public async Task<IActionResult> EditTask(int id,int id2, [FromBody] AddPatientDtos patientData )
     {
+        Console.WriteLine(patientData);
         var PatientExist = await _dbcontext.Patients.Include(s => s.AddressField).FirstOrDefaultAsync(p => p.Id == id); ;
         if(PatientExist==null)
         {

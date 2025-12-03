@@ -41,7 +41,7 @@ export class Myservice {
      return this.http.get<IResponse<IPatientResonses[]>>("http://localhost:5080/api/patient");
   }
 // update
-  updatepatient(data:IPatient,id:number,id2:number){
+  updatepatient(id:number,id2:number,data:IPatient){
     return this.http.put(`http://localhost:5080/api/patient/update/${id}/${id2}`,data)
   }
   // delete

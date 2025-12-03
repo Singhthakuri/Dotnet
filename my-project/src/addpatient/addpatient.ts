@@ -99,6 +99,7 @@ deleteAddress(id1:number){
 // cancel
 cancel(){
   this.IsEditButton=false;
+  this.clearForm();
 }
 
 // addresss edit part
@@ -132,11 +133,14 @@ update(){
     patientEdit!.addressField[addressIndex!].district = this.AllAddress.District;
   patientEdit!.addressField[addressIndex!].street = this.AllAddress.Street;
   patientEdit!.addressField[addressIndex!].tole = this.AllAddress.Tole;
-    console.log(this.patient);
- this.http.updatepatient(this.patient,this.useIdForEdit!,this.useIdForAddressEdit!).subscribe({
+    console.log("patient",this.patient);
+    this.addressAdder();
+    console.log("updated patient",this.patient);
+ this.http.updatepatient(this.useIdForEdit!,this.useIdForAddressEdit!,this.patient).subscribe({
     next:(res)=>{console.log("Patient Added",res),
       this.getpatients();
-      this.makeFieldEmpty();
+      this.clearForm();
+      this.cancel();
       this.IsEditButton=false;
     },
     error:(err)=>{console.log("error occured",err)},
