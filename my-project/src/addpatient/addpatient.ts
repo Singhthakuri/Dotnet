@@ -80,7 +80,7 @@ toggleAddress(){
   this.addressEnable=!this.addressEnable;
 }
 
-// de;ete
+// delete
 delete(id:number){
   this.http.delete(id).subscribe({
     next:(res)=>{console.log("patient deleted",res),this.getpatients()},
