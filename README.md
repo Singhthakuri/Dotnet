@@ -4,6 +4,11 @@ This project is a full-stack CRUD (Create, Read, Update, Delete) application bui
 
 ---
 
+## Preview 
+
+![image](my-project/public/sample.png)
+
+
 ## 🚀 Tech Stack
 
 ### **Frontend (Angular)**
