@@ -4,8 +4,10 @@
     "\\Controllers",
     "\\Data",
     "\\Dtos",
-    "\\Models"
+    "\\Models",
+    "\\Properties",
+    "\\Views"
   ],
-  "SelectedNode": "\\Controllers\\PatientController.cs",
+  "SelectedNode": "\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

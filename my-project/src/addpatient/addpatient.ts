@@ -107,6 +107,7 @@ editAddress(id1: number, id2: number) {
   this.IsEditButton = true;
   this.useIdForEdit = id1;
   this.useIdForAddressEdit = id2;
+  
   const patient = this.Allpatients.find(p => p.id === id1);
   if (!patient) return console.error('Patient not found');
   const address = patient.addressField.find(a => a.id === id2);
