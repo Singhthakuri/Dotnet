@@ -10,5 +10,5 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('my-project');
+  protected readonly title = signal('Hamro Aspatal');
 }
