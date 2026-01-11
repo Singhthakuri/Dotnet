@@ -37,8 +37,7 @@ This project is a full-stack CRUD (Create, Read, Update, Delete) application bui
 * Delete records
 * API-based communication between Angular and .NET backend
 * Clean folder structure for both frontend and backend
-* Reactive Forms in Angular
-* DTOs, Models, Validation in .NET
+* DTOs, Models
 
 ---
 
@@ -100,7 +99,7 @@ dotnet run
 Backend will run at:
 
 ```
-https://localhost:5001
+https://localhost:5080
 http://localhost:5000
 ```
 
